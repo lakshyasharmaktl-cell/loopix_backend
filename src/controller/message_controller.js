@@ -75,7 +75,6 @@ export const getChatList = async (req, res) => {
   }
 };
 
-// Helper function to format timestamp
 function formatTimeDifference(date) {
   const now = new Date();
   const diffMs = now - new Date(date);

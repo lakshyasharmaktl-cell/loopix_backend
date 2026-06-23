@@ -24,18 +24,15 @@ export const friends = async (req, res) => {
       currentUser.friendRequests = currentUser.friendRequests.filter(
         (id) => id.toString() !== requestId
       );
-      // Remove from sender's sentRequests
       senderUser.sentRequests = (senderUser.sentRequests || []).filter(
         (id) => id.toString() !== currentUserId
       );
-      // Add to friends (prevent duplicates)
       if (!currentUser.friends.some(id => id.toString() === requestId)) {
         currentUser.friends.push(requestId);
       }
       if (!senderUser.friends.some(id => id.toString() === currentUserId)) {
         senderUser.friends.push(currentUserId);
       }
-      // Update friend counts
       currentUser.friendsCount = currentUser.friends.length;
       senderUser.friendsCount = senderUser.friends.length;
 
